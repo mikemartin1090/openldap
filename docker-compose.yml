@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  ldap_server:
+    image: mikemartin1090/openldap:latest
+    container_name: ldap_server
+    ports:
+      - 389:389
+  ldap_server_admin:
+    image: osixia/phpldapadmin:0.7.2
+    container_name: ldap_explorer
+    ports:
+      - 8090:80
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: ldap_server
+      PHPLDAPADMIN_HTTPS: 'false'
